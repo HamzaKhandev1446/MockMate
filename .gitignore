@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs/temp
+*.log
+*.tmp
+*.temp
+
+# Build/package artifacts
+dist/
+*.zip
+
+# Local agent/tooling metadata
+.cursor/
+terminals/
+agent-transcripts/
+
+# Claude-specific local notes/artifacts
+claude/*
+
+# Markdown notes/docs
+*.md
+

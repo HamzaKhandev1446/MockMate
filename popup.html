@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MockMate</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="top-global">
+        <button id="extensionToggle" type="button" class="toggle-switch is-on" role="switch" aria-checked="true" style="width: 116px; min-width: 116px;">
+          <span class="toggle-label toggle-label-off">OFF</span>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label toggle-label-on">ON</span>
+        </button>
+      </section>
+
+      <header class="top">
+        <div class="brand">
+          <img class="brand-logo" src="icons/icon48.svg" alt="MockMate logo" />
+          <span>MockMate</span>
+        </div>
+        <div class="modes header-modes">
+          <button id="realBtn">Real</button>
+          <button id="recordBtn">Record</button>
+          <button id="replayBtn">Replay</button>
+        </div>
+        <div class="top-actions">
+          <button id="themeToggle" class="theme-btn" type="button" title="Toggle Day/Night mode" aria-label="Toggle theme">
+            <span class="theme-track" aria-hidden="true">
+              <span class="theme-glyph theme-glyph-sun">&#9728;</span>
+              <span class="theme-glyph theme-glyph-moon">&#9790;</span>
+              <span class="theme-thumb"></span>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <section id="sessionVisual" class="panel session-visual mode-real-visual">
+        <div class="session-top">
+          <div class="session-title-wrap">
+            <span id="sessionPulse" class="session-pulse"></span>
+            <span id="sessionTitle" class="session-title">Real Mode</span>
+          </div>
+          <span id="sessionElapsed" class="session-elapsed">00:00</span>
+        </div>
+        <div id="sessionSubtitle" class="session-subtitle">No recording active.</div>
+        <div class="session-stats">
+          <div class="stat-chip"><span>Captured</span><strong id="capturedCount">0</strong></div>
+          <div class="stat-chip"><span>Enabled</span><strong id="enabledCount">0</strong></div>
+          <div class="stat-chip"><span>Total</span><strong id="totalCount">0</strong></div>
+        </div>
+      </section>
+
+      <section class="panel panel-api">
+        <label class="label">Origin</label>
+        <div id="origin" class="origin">-</div>
+      </section>
+
+      <section class="panel">
+        <label class="label">Session</label>
+        <div class="row">
+          <select id="sessionSelect"></select>
+          <button id="newSessionBtn" style="width: 130px">New Session</button>
+          <button id="renameSessionBtn" style="width: 130px">Rename Session</button>
+          <button id="deleteSessionBtn" class="danger" style="width: 130px">Delete Session</button>
+        </div>
+        <div class="row" style="margin-top: 6px;">
+          <button id="saveDraftBtn" style="width: 170px">Save Draft as Session</button>
+        </div>
+        <div class="hint">Same tab can navigate any URL. Capture and replay from selected session.</div>
+      </section>
+
+      <section class="panel row">
+        <button id="saveBtn">Refresh Snapshot</button>
+        <button id="clearBtn" class="danger">Clear</button>
+      </section>
+
+      <section class="panel">
+        <label class="label" for="delay">Global Mock Delay (ms)</label>
+        <div class="row">
+          <input id="delay" type="range" min="0" max="60000" step="100" />
+          <input id="delayValue" type="number" min="0" max="60000" step="100" />
+        </div>
+      </section>
+
+      <section class="panel">
+        <label class="label" for="search">Mocked APIs</label>
+        <div class="row" style="margin-bottom: 6px;">
+          <span class="label" style="margin: 0;">All APIs</span>
+          <button id="toggleAllBtn" type="button" class="toggle-switch is-on" role="switch" aria-checked="true" style="margin-left: auto;">
+            <span class="toggle-label toggle-label-off">OFF</span>
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span class="toggle-label toggle-label-on">ON</span>
+          </button>
+        </div>
+        <input id="search" class="search" placeholder="Search method/url..." />
+        <div id="apiList" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <label class="label">Selected API</label>
+        <div id="selectedKey" class="selected">None</div>
+        <label class="label">Status</label>
+        <input id="statusInput" type="number" min="100" max="599" />
+        <label class="label">Headers (JSON)</label>
+        <textarea id="headersInput" rows="4"></textarea>
+        <label class="label">Body (JSON)</label>
+        <textarea id="bodyInput" rows="10"></textarea>
+        <div class="row">
+          <button id="saveApiBtn">Save API</button>
+          <button id="discardApiBtn">Discard</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label class="label">Quick Add API (Manual / cURL)</label>
+        <label class="label">Paste cURL</label>
+        <textarea id="quickAddCurl" rows="3" placeholder="curl 'https://api.example.com/users' -X POST -H 'content-type: application/json' --data-raw '{&quot;name&quot;:&quot;Jane&quot;}'"></textarea>
+        <div class="row" style="margin-top: 6px;">
+          <button id="quickAddCurlBtn" style="width: 160px">Import from cURL</button>
+        </div>
+        <div class="hint">You can paste a DevTools "Copy as cURL (bash)" command to auto-fill the fields below.</div>
+
+        <div class="row" style="margin-top: 8px;">
+          <select id="quickAddMethod" style="width: 120px">
+            <option>GET</option>
+            <option>POST</option>
+            <option>PUT</option>
+            <option>PATCH</option>
+            <option>DELETE</option>
+          </select>
+          <input id="quickAddUrl" placeholder="https://api.example.com/path?x=1" />
+        </div>
+        <div class="row" style="margin-top: 6px;">
+          <input id="quickAddStatus" type="number" min="100" max="599" value="200" style="width: 120px" />
+          <button id="quickAddBtn" style="width: 140px">Add API</button>
+        </div>
+        <label class="label" style="margin-top: 6px;">Headers (JSON)</label>
+        <textarea id="quickAddHeaders" rows="2" placeholder='{"content-type":"application/json"}'></textarea>
+        <label class="label">Body (JSON)</label>
+        <textarea id="quickAddBody" rows="4" placeholder='{"ok":true}'></textarea>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+  </html>

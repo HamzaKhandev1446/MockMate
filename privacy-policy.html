@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MockMate Privacy Policy</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        margin: 0;
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+      }
+      h1, h2 {
+        line-height: 1.25;
+        color: #f8fafc;
+      }
+      h1 { margin-top: 0; }
+      h2 { margin-top: 28px; }
+      p, li { color: #cbd5e1; }
+      code {
+        background: rgba(148, 163, 184, 0.2);
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>MockMate Privacy Policy</h1>
+      <p><strong>Last updated:</strong> 2026-04-22</p>
+
+      <p>
+        MockMate is a developer tool that records and replays API responses in your browser for local testing.
+      </p>
+
+      <h2>What data MockMate accesses</h2>
+      <ul>
+        <li>Request metadata for API calls made by the active web page (for example: URL, method).</li>
+        <li>Response data for calls captured in Record mode (status, headers, body content).</li>
+        <li>Extension settings and saved mock sessions.</li>
+        <li>Active tab information needed to scope state to the current site.</li>
+      </ul>
+
+      <h2>How data is stored</h2>
+      <ul>
+        <li>MockMate stores data locally in your browser using <code>chrome.storage.local</code>.</li>
+        <li>MockMate does not use a remote database or cloud account for extension data.</li>
+      </ul>
+
+      <h2>How data is used</h2>
+      <ul>
+        <li>To let you record, edit, and replay API responses during development/testing.</li>
+        <li>To render extension UI state (modes, sessions, delays, toggles) and on-page banner status.</li>
+      </ul>
+
+      <h2>Data sharing</h2>
+      <ul>
+        <li>MockMate does not sell your data.</li>
+        <li>MockMate does not transmit captured API data to MockMate-owned servers.</li>
+        <li>
+          If you use features that call your own API endpoints from the extension (for example endpoint import/fetch helpers),
+          requests are sent only to the destination URL you provide.
+        </li>
+      </ul>
+
+      <h2>User control</h2>
+      <ul>
+        <li>You can disable extension behavior globally using the ON/OFF toggle.</li>
+        <li>You can clear draft/session data and delete saved sessions from the popup UI.</li>
+        <li>Removing the extension removes access to the extension features.</li>
+      </ul>
+
+      <h2>Permissions rationale</h2>
+      <ul>
+        <li><code>storage</code>: save settings, sessions, and mock data locally.</li>
+        <li><code>tabs</code>: scope state and sync behavior for the active tab/site.</li>
+        <li><code>contextMenus</code>: support "Add to MockMate" context menu actions.</li>
+        <li><code>host_permissions</code> (<code>&lt;all_urls&gt;</code>): required for a general-purpose API mocking workflow across test environments.</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>For policy questions, use your project support channel or repository issue tracker.</p>
+    </main>
+  </body>
+  </html>
