@@ -27,4 +27,5 @@ claude/*
 
 # Markdown notes/docs
 *.md
+!README.md
 
