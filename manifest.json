@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MockMate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "APIs go down. You keep going.",
   "permissions": [
     "storage",

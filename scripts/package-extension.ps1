@@ -29,6 +29,7 @@ $excludePatterns = @(
   "dist",
   "node_modules",
   "scripts",
+  "claude",
   "*.plan.md",
   "*.log",
   "*.tmp"
